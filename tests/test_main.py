@@ -24,6 +24,12 @@ def test_add_item(test_client: TestClient):
 
 
 def test_list_items(test_client: TestClient):
+    response = test_client.post(
+        "/item", json={"name": "foo1", "price": 29.99, "is_offer": False}
+    )
+    response = test_client.post(
+        "/item", json={"name": "foo2", "price": 29.99, "is_offer": False}
+    )
     response = test_client.get("/items")
     assert response.status_code == 200
     assert len(response.json()) > 1
