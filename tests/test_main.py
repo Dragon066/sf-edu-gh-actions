@@ -16,8 +16,10 @@ def test_get_item(test_client: TestClient):
 
 def test_add_item(test_client: TestClient):
     response = test_client.post(
-        "/item", json={"name": "foo", "price": 29.99, "is_offer": False}
+        "/item", json={"name": "bar", "price": 29.99, "is_offer": False}
     )
     assert response.status_code == 200
     response_list = test_client.get("/items")
-    assert response_list.json() == [{"name": "foo", "price": 29.99, "is_offer": False}]
+    assert response_list.json() == [
+        {"name": "foo", "price": 29.99, "is_offer": False}
+    ]
